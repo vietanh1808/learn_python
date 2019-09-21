@@ -15,19 +15,24 @@ def load_user_luckhoidong():
 load_user_luckhoidong()
 def kiemtra_id_user():
     while True:
+        flag = 0
         nhap = input("Moi ban nhap ID user: ")
         for user in danhsachuser:
-            if nhap not in user['id']:
-                return nhap
-                break
-        print("ID user nay da ton tai!")
+            if nhap == user['id']:
+                flag = 1
+        if flag == 0:
+            return nhap
+            break
+        else:
+            print("ID user nay da ton tai!")
 def tao_user():
     id_user = kiemtra_id_user()
     user = {}
     user['id'] = id_user
     user['name'] = input("Moi ban nhap USERNAME cua user: ")
     user['pass'] = input("Moi ban nhap PASSWORD cua user: ")
-    with open("danhsachuser.csv", "a") as f:
+    danhsachuser.append(user)
+    with open("../user_and_customer/danhsachuser.csv", "a") as f:
         str_save = user['id'] + '#' + user['name'] + '#' + user['pass'] + '\n' 
         f.write(str_save)
         return
@@ -49,7 +54,7 @@ def login_user():
     #input()
     flag = 0
     while True:
-        print("+---------------LOGIN----------------+")
+        print("+++++++++++++ LOGIN +++++++++++++")
         id = input("ID: ")
         username = input("username: ")
         password = input("password: ")
@@ -63,7 +68,7 @@ def login_user():
             break
 def xem_user():
     count = 0
-    print("---------------DANH SACH USER-----------------")
+    print("++++++++++++ DANH SACH USER ++++++++++++")
     for user in danhsachuser:
         count += 1
         print("[+] USER{}: id = {}, username = {}".format(count, user['id'], user['name']))

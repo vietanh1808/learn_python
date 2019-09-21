@@ -1,69 +1,93 @@
-import quanlyhoadon,quanlykhachang,quanlyuser
+import quanlyhoadon,quanlykhachang,quanlyuser,quanlynhapkho
 import os
 import json
 
-print("+--------------MENU_USER-------------------------------+")
-print("|Chon TAOUSER de tao user                              |")
-print("|Chon XOAUSER de xoa user                              |")
-print("|Chon XEMUSER de xem danh sach user                    |")
-print("|Chon LOGIN de login                                   |")
-print("|                                                      |")
-print("+--------------MENU_HOA_DON----------------------------+")
-print("|Chon C de tao hoa don                                 |")
-print("|Chon R de xem thong tin hoa don                       |")
-print("|Chon T de tinh tong doanh thu                         |")
-print("|Chon A de tinh tong hang hoa ban ra                   |")
-print("|Chon C de tao hoa don                                 |")
-print("|                                                      |")
-print("+--------------MENU_HANG_HOA---------------------------+")
-print("|Chon HH de xem hang theo thang                        |")
-print("|Chon LHH de xem loai hang hoa chay nhat               |")
-print("|Chon THH de tao hang hoa                              |")
-print("|Chon XHH de xem hang hoa                              |")
-print("|Chon TLH de tao loai hang hoa                         |")
-print("|Chon XLH de xem loai hang hoa                         |")
-print("+------------------------------------------------------+")
-print("|                                                      |")
-print("+--------------MENU_KHACH_HANG-------------------------+")
-print("|Chon XDSKH de xem danh sach khach hang                |")
-print("|Chon XTTKH de xem thong tin khach hang                |")
-print("|Chon XKHTM de xem khach hang than mat                 |")
-print("+------------------------------------------------------+")
-print("|                                                      |")
-print("|Chon E de thoat                                       |")
-print("+------------------------------------------------------+")
-
-while True:
-    x = input("=> chon chuc nang:")
-    print("=> ban da chon chuc nang:",x)
-    if x.upper() == 'HH':
-      quanlyhoadon.hanghoatheothang()
-    if x.upper() == 'LHH':
-      quanlyhoadon.loaihh_chaynhat()
-    if x.upper() == 'TLH':
-      quanlyhoadon.tao_loaihanghoa()
-    if x.upper() == 'XLH':
-      quanlyhoadon.xem_loaihanghoa()
-    if x.upper() == 'THH':
-      quanlyhoadon.tao_hanghoa()
-    if x.upper() == 'XHH':
-      quanlyhoadon.xem_hanghoa()
-    if x.upper() == 'C':
-      quanlyhoadon.tao_hoadon()
-    if x.upper() == 'R':
-      quanlyhoadon.xem_hoadon()
-    if x.upper() == 'T':
-      quanlyhoadon.xem_tongdoanhthu()
-    if x.upper() == 'A':
-      quanlyhoadon.tonghanghoaban()
-    if x.upper() == 'TAOUSER':
+def user():
+  print("+--------------MENU_USER-------------------------------+")
+  print("|Chon CUSER de tao user                                |")
+  print("|Chon DUSER de xoa user                                |")
+  print("|Chon RUSER de xem danh sach user                      |")
+  print("|Chon LOGIN de login                                   |")
+  print("|Chon E de thoat                                       |")
+  print("+------------------------------------------------------+")
+  while True:
+    x = input("=> chon chuc nang USER: ")
+    print("=> ban da chon chuc nang: ",x)
+    if x.upper() == 'CUSER':
       quanlyuser.tao_user()
-    if x.upper() == 'XOAUSER':
+    if x.upper() == 'DUSER':
       quanlyuser.xoa_user()
-    if x.upper() == 'XEMUSER':
+    if x.upper() == 'RUSER':
       quanlyuser.xem_user()
     if x.upper() == 'LOGIN':
       quanlyuser.login()
+    if x.upper() == 'E':
+      return
+
+def hoadon():
+  print("+--------------MENU_HOA_DON----------------------------+")
+  print("|Chon C de tao hoa don                                 |")
+  print("|Chon R de xem thong tin hoa don                       |")
+  print("|Chon T de tinh tong doanh thu                         |")
+  print("|Chon A de tinh tong hang hoa ban ra                   |")
+  print("|Chon E de thoat                                       |")
+  print("+------------------------------------------------------+")
+  while True:
+    x = input("=> chon chuc nang HOADON: ")
+    print("=> ban da chon chuc nang: ",x)
+    if x.upper() == 'C':
+      quanlyhoadon.hoadon.tao_hoadon()
+    if x.upper() == 'R':
+      quanlyhoadon.hoadon.xem_hoadon()
+    if x.upper() == 'T':
+      quanlyhoadon.hoadon.xem_tongdoanhthu()
+    if x.upper() == 'A':
+      quanlyhoadon.hoadon.tonghanghoaban()
+    if x.upper() == 'E':
+      return
+def hanghoa():
+  print("+--------------MENU_HANG_HOA---------------------------+")
+  print("|Chon HH de xem hang theo thang                        |")
+  print("|Chon LHH de xem loai hang hoa chay nhat               |")
+  print("|Chon THH de tao hang hoa                              |")
+  print("|Chon XHH de xem hang hoa                              |")
+  print("|Chon TLH de tao loai hang hoa                         |")
+  print("|Chon XTK de xem ton kho hang hoa                      |")
+  print("|Chon NK de nhap kho hang hoa                          |")
+  print("|Chon E de thoat                                       |")
+  print("+------------------------------------------------------+")
+  while True:
+    x = input("=> chon chuc nang HANGHOA: ")
+    print("=> ban da chon chuc nang: ",x)
+    if x.upper() == 'HH':
+      quanlyhoadon.hanghoa.hanghoatheothang()
+    if x.upper() == 'LHH':
+      quanlyhoadon.hanghoa.loaihh_chaynhat()
+    if x.upper() == 'TLH':
+      quanlyhoadon.hanghoa.tao_loaihanghoa()
+    if x.upper() == 'XLH':
+      quanlyhoadon.hanghoa.xem_loaihanghoa()
+    if x.upper() == 'THH':
+      quanlyhoadon.hanghoa.tao_hanghoa()
+    if x.upper() == 'XHH':
+      quanlyhoadon.hanghoa.xem_hanghoa()
+    if x.upper() == 'NK':
+      quanlynhapkho.kho.nhapkho()
+    if x.upper() == 'XTK':
+      quanlynhapkho.kho.xuat_tonkho()
+    if x.upper() == 'E':
+      return
+
+def khachhang():
+  print("+--------------MENU_KHACH_HANG-------------------------+")
+  print("|Chon XDSKH de xem danh sach khach hang                |")
+  print("|Chon XTTKH de xem thong tin khach hang                |")
+  print("|Chon XKHTM de xem khach hang than mat                 |")
+  print("|Chon E de thoat                                       |")
+  print("+------------------------------------------------------+")
+  while True:
+    x = input("=> chon chuc nang KHACHHANG: ")
+    print("=> ban da chon chuc nang: ",x)
     if x.upper() == 'XDSKH':
       quanlykhachang.xem_dskhachhang()
     if x.upper() == 'XTTKH':
@@ -71,7 +95,24 @@ while True:
     if x.upper() == 'XKHTM':
       quanlykhachang.khachhang_thanmat()
     if x.upper() == 'E':
-        print("Tam biet! Hen gap lai")
-        break
-        
-
+      return
+print("+------------------------------+")
+print("|[1]  Thao tac voi user        |")
+print("|[2]  Thao tac voi hang hoa    |")
+print("|[3]  Thao tac voi hoa don     |")
+print("|[4]  Thao tac voi khach hang  |")
+print("|[5]  Thoat                    |")
+print("+------------------------------+")
+while True:
+  nhap = input("[+]  Chon chuc nang: ")
+  if nhap == '1':
+    user()
+  if nhap == '2':
+    hanghoa()
+  if nhap == '3':
+    hoadon()
+  if nhap == '4':
+    khachhang()
+  if nhap == '5':
+    print("Cam on! Hen gap lai...")
+    break

@@ -32,13 +32,13 @@ def load_khachhang():
                                 hanghoa_mua[ten_hh] = hanghoa1['soluong']                           
 load_khachhang()
 def xem_dskhachhang():
-    print("------DANH SACH KHACH HANG------")
+    print("+++++++++ DANH SACH KHACH HANG ++++++++")
     for khachhang in range(len(danhsachkhachhang)):
-        print("Khach hang {}: {}".format(khachhang+1, danhsachkhachhang[khachhang]))
+        print("[+] Khach hang {}: {}".format(khachhang+1, danhsachkhachhang[khachhang]))
 def xem_thongtin_KH():
     count = 0
     nhap = input("Moi ban nhap ten khach hang can xem: ")
-    print("------THONG TIN KHACH HANG------")
+    print("+++++++++++ THONG TIN KHACH HANG ++++++++++++")
     for khachhang in quanly_ds_khachhang:
         if khachhang['ten'] == nhap:
             print("[+] Ten khach hang: ", khachhang['ten'])
@@ -52,7 +52,6 @@ def xem_thongtin_KH():
                     else:
                         print(" " + data + ": " + str(hanghoa[data]))
                         count += 1
-# xem_thongtin_KH()
 # print(quanly_ds_khachhang)
 def khachhang_thanmat():
     count = 1
