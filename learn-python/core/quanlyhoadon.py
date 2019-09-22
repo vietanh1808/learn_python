@@ -3,8 +3,9 @@ import os,json
 danhsachhanghoa = []
 danhsachloaihanghoa = []
 ds_hang_tonkho = []
+danhsachhoadon = []
 
-class hanghoa:
+class lop_hanghoa:
   def load_loaihanghoa_luckhoidong():
     files = os.listdir("../danhmuc")
     if "loaihanghoa.csv" not in files:
@@ -174,7 +175,7 @@ class hanghoa:
         if id == hanghoa['id']:
           return hanghoa['ten'], hanghoa['giaban'], id
 
-class hoadon:
+class lop_hoadon:
   def TaoFileHoaDon(thongtin_hoadon,tenhoadon):
       with open('../hoadon/'+str(tenhoadon)+'.json','w') as wfile:
           hoadon = json.dumps(thongtin_hoadon, indent=2)
@@ -192,7 +193,7 @@ class hoadon:
           break
   def tao_hoadon():
       hoadon={}
-      sohoadon = ktra_sohoadon()
+      sohoadon = lop_hoadon.ktra_sohoadon()
       hoadon["sohoadon"] = sohoadon
       hoadon["ngayhoadon"]= input("nhap ngay hoa don :")
       hoadon["nguoimua"]= input("nhap nguoi mua hang :")
@@ -205,7 +206,7 @@ class hoadon:
       while nhaphanghoa.upper() == 'Y':
           hanghoa = {}
           hanghoa["stt"] = input("nhap so thu tu: ")
-          value_ten, value_gia, value_id = hanghoa.ktra_id_hanghoa()
+          value_ten, value_gia, value_id = lop_hanghoa.ktra_id_hanghoa()
           print("Ten hang hoa: ", value_ten)
           print("Gia hang hoa: ", value_gia)
           hanghoa['ten'] = value_ten
@@ -215,7 +216,7 @@ class hoadon:
           hanghoa["thanhtien"] = hanghoa["soluong"] * hanghoa["dongia"]
           
           # ham duoi la quan ly kho hang
-          kiemtra_kho = kho.kiemtra_kho(value_id, hanghoa['soluong'])
+          kiemtra_kho = lop_kho.kiemtra_kho(value_id, hanghoa['soluong'])
           if kiemtra_kho is not None:
             return
 
@@ -225,8 +226,7 @@ class hoadon:
           nhaphanghoa = input("=> Ban co muon nhap hang hoa khong (y/n): ")
 
       hoadon["tongtien"] = hoadon["tongtientruocthue"] + hoadon["tongtientruocthue"]*hoadon["thue"]
-      danhsachhoadon.append(hoadon)
-      TaoFileHoaDon(hoadon, sohoadon)
+      lop_hoadon.TaoFileHoaDon(hoadon, sohoadon)
   def xem_hoadon():
     flag = 0
     nhap = input("Moi ban nhap so hoa don can xem: ")
@@ -285,12 +285,14 @@ class hoadon:
     print("Tong so hang hoa: ", tongsohanghoa)
     print("Doanh so ban: ", doanhsoban)
 
-class kho:
+class lop_kho:
   def ghi_kho():
       file_w = open("../danhmuc/phieunhapkho.csv", "w")
-      for hanghoa in ds_hang_tonkho:
-          str_save = hanghoa['id'] + '#' + str(hanghoa['soluong']) + '\n'
-          file_w.write(str_save)
+      for hanghoakho in ds_hang_tonkho:
+        for hanghoa in danhsachhanghoa:
+          if hanghoa['id'] == hanghoakho['id']:
+            str_save = hanghoakho['id'] + '#' + hanghoa['ten'] + '#' + str(hanghoakho['soluong']) + '\n'
+            file_w.write(str_save)
   def load_tonkho():
       with open("../danhmuc/phieunhapkho.csv", "r") as f:
           line = f.readline()
@@ -314,7 +316,7 @@ class kho:
                   soluong = int(input("Moi ban nhap so luong can nhap: "))
                   hanghoa['soluong'] = int(hanghoa['soluong'])
                   hanghoa['soluong'] += soluong
-                  ghi_kho()
+                  lop_kho.ghi_kho()
                   return 
   def kiemtra_kho(id, soluong): # khi tao hoa don hang hoa
       for hanghoa in ds_hang_tonkho:
@@ -325,7 +327,7 @@ class kho:
                   return 1
               else:
                   hanghoa['soluong'] -= soluong
-                  ghi_kho()
+                  lop_kho.ghi_kho()
                   return
   def xuat_tonkho():
     for hanghoa in ds_hang_tonkho:

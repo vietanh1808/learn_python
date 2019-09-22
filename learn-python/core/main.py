@@ -1,4 +1,4 @@
-import quanlyhoadon,quanlykhachang,quanlyuser,quanlynhapkho
+import quanlyhoadon,quanlykhachang,quanlyuser
 import os
 import json
 
@@ -36,13 +36,13 @@ def hoadon():
     x = input("=> chon chuc nang HOADON: ")
     print("=> ban da chon chuc nang: ",x)
     if x.upper() == 'C':
-      quanlyhoadon.hoadon.tao_hoadon()
+      quanlyhoadon.lop_hoadon.tao_hoadon()
     if x.upper() == 'R':
-      quanlyhoadon.hoadon.xem_hoadon()
+      quanlyhoadon.lop_hoadon.xem_hoadon()
     if x.upper() == 'T':
-      quanlyhoadon.hoadon.xem_tongdoanhthu()
+      quanlyhoadon.lop_hoadon.xem_tongdoanhthu()
     if x.upper() == 'A':
-      quanlyhoadon.hoadon.tonghanghoaban()
+      quanlyhoadon.lop_hoadon.tonghanghoaban()
     if x.upper() == 'E':
       return
 def hanghoa():
@@ -60,21 +60,21 @@ def hanghoa():
     x = input("=> chon chuc nang HANGHOA: ")
     print("=> ban da chon chuc nang: ",x)
     if x.upper() == 'HH':
-      quanlyhoadon.hanghoa.hanghoatheothang()
+      quanlyhoadon.lop_hanghoa.hanghoatheothang()
     if x.upper() == 'LHH':
-      quanlyhoadon.hanghoa.loaihh_chaynhat()
+      quanlyhoadon.lop_hanghoa.loaihh_chaynhat()
     if x.upper() == 'TLH':
-      quanlyhoadon.hanghoa.tao_loaihanghoa()
+      quanlyhoadon.lop_hanghoa.tao_loaihanghoa()
     if x.upper() == 'XLH':
-      quanlyhoadon.hanghoa.xem_loaihanghoa()
+      quanlyhoadon.lop_hanghoa.xem_loaihanghoa()
     if x.upper() == 'THH':
-      quanlyhoadon.hanghoa.tao_hanghoa()
+      quanlyhoadon.lop_hanghoa.tao_hanghoa()
     if x.upper() == 'XHH':
-      quanlyhoadon.hanghoa.xem_hanghoa()
+      quanlyhoadon.lop_hanghoa.xem_hanghoa()
     if x.upper() == 'NK':
-      quanlynhapkho.kho.nhapkho()
+      quanlyhoadon.lop_kho.nhapkho()
     if x.upper() == 'XTK':
-      quanlynhapkho.kho.xuat_tonkho()
+      quanlyhoadon.lop_kho.xuat_tonkho()
     if x.upper() == 'E':
       return
 
@@ -96,14 +96,14 @@ def khachhang():
       quanlykhachang.khachhang_thanmat()
     if x.upper() == 'E':
       return
-print("+------------------------------+")
-print("|[1]  Thao tac voi user        |")
-print("|[2]  Thao tac voi hang hoa    |")
-print("|[3]  Thao tac voi hoa don     |")
-print("|[4]  Thao tac voi khach hang  |")
-print("|[5]  Thoat                    |")
-print("+------------------------------+")
 while True:
+  print("+------------------------------+")
+  print("|[1]  Thao tac voi user        |")
+  print("|[2]  Thao tac voi hang hoa    |")
+  print("|[3]  Thao tac voi hoa don     |")
+  print("|[4]  Thao tac voi khach hang  |")
+  print("|[5]  Thoat                    |")
+  print("+------------------------------+")
   nhap = input("[+]  Chon chuc nang: ")
   if nhap == '1':
     user()
