@@ -49,6 +49,27 @@ class lop_hanghoa:
           line = f.readline()
   load_hanghoa_luckhoidong()
 
+  def xem_hanghoa(id=None):
+    if id is None:
+        id = input("xin moi nhap id hang hoa:")
+    for hanghoa in danhsachhanghoa:
+      if hanghoa["id"] == id:
+        print(hanghoa)
+        return hanghoa
+  
+    if id is None:
+        id = input("xin moi nhap id hang hoa:")
+    for loaihanghoa in danhsachloaihanghoa:
+      if loaihanghoa["id"] == id:
+        print(hanghoa)
+        return hanghoa
+  def xem_loaihanghoa(id=None):
+    if id is None:
+        id = input("xin moi nhap id loai hang hoa:")
+    for loai in danhsachloaihanghoa:
+      if loai["id"] == id:
+        print("loai hang hoa: ", loai)
+        return loai
   def tao_loaihanghoa():
     data = {}
     id = input("xin moi nhap id loai hang hoa:")
@@ -60,56 +81,38 @@ class lop_hanghoa:
     data["id"] = id
     data["ten"] = input("xin moi nhap ten loai hang hoa:")
     danhsachloaihanghoa.append(data)
+
     str_to_save = data["id"] + "#" + data["ten"] + '\n'
     with open('../danhmuc/loaihanghoa.csv', 'a') as f:
         data = f.write(str_to_save)
-  def xem_loaihanghoa(id = None):
-    if id is None:
-        id = input("xin moi nhap id loai hang hoa:")
-    for loai in danhsachloaihanghoa:
-      if loai["id"] == id:
-        print("loai hang hoa: ", loai)
-        return loai
-  def update_hanghoa():
-    for data in danhsachhanghoa:
-      str_to_save = data["id"] + "#" + data["ten"] + '#' + data["giaban"] + "#" +  data["loaihanghoa_id"]
-      with open('../danhmuc/hanghoa.csv', 'w') as f:
-        f.write(str_to_save)
   def tao_hanghoa():
     data = {}
-    id = input("xin moi nhap id hang hoa:")
-    tim_id_daco = xem_loaihanghoa(id)
+    id = input("xin moi nhap id hang hoa: ")
+    tim_id_daco = lop_hanghoa.xem_hanghoa(id)
     if tim_id_daco is not None:
       print("Da ton tai Ma loai hang hoa nay. Xin moi ban thu hien chu nang khac")
       return
     data["id"] = id
-    data["ten"] = input("xin moi nhap ten hang hoa:")
-    data["giaban"] = input("xin moi nhap gia ban:")
-    loaihanghoa_id = input("xin moi nhap ma loai hang hoa:")
+    data["ten"] = input("xin moi nhap ten hang hoa: ")
+    data["giaban"] = input("xin moi nhap gia ban: ")
+    loaihanghoa_id = input("xin moi nhap ma loai hang hoa: ")
     
     co_hienthi_danhsachloai = False
-    tim_idloai_daco = xem_loaihanghoa(loaihanghoa_id)
+    tim_idloai_daco = lop_hanghoa.xem_loaihanghoa(loaihanghoa_id)
     
     while tim_idloai_daco is None:
-      print("Danh sach loai hang hoa:")
+      print("Danh sach loai hang hoa: ")
       for loaihanghoai in danhsachloaihanghoa:
           print(loaihanghoai["id"])
-      loaihanghoa_id = input("xin moi nhap ma loai hang hoa:")
-      tim_idloai_daco = xem_loaihanghoa(loaihanghoa_id)
-    
+      loaihanghoa_id = input("xin moi nhap ma loai hang hoa: ")
+      tim_idloai_daco = lop_hanghoa.xem_loaihanghoa(loaihanghoa_id)
     
     data["loaihanghoa_id"] = loaihanghoa_id
     danhsachhanghoa.append(data)
     str_to_save = data["id"] + "#" + data["ten"] + '#' + data["giaban"] + "#" +  data["loaihanghoa_id"] + '\n'
     with open('../danhmuc/hanghoa.csv', 'a') as f:
         data = f.write(str_to_save)
-  def xem_hanghoa(id = None):
-    if id is None:
-        id = input("xin moi nhap id hang hoa:")
-    for hanghoa in danhsachhanghoa:
-      if hanghoa["id"] == id:
-        print(hanghoa)
-        return hanghoa
+
   def mat_hang():
     danhsachban = {}
     loaihanghoaban = {}
@@ -174,6 +177,9 @@ class lop_hanghoa:
       for hanghoa in danhsachhanghoa:
         if id == hanghoa['id']:
           return hanghoa['ten'], hanghoa['giaban'], id
+
+  ######### test ##########
+  tao_hanghoa()
 
 class lop_hoadon:
   def TaoFileHoaDon(thongtin_hoadon,tenhoadon):
@@ -333,3 +339,8 @@ class lop_kho:
     for hanghoa in ds_hang_tonkho:
         print("[+] Ton kho {}: {}".format(hanghoa['ten'], hanghoa['soluong']))
 
+print(danhsachhanghoa)
+print("-----------------------------------------------")
+print(danhsachloaihanghoa)
+print("-----------------------------------------------")
+lop_hanghoa.tao_hanghoa()
